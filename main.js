@@ -111,7 +111,7 @@ module.exports.loop = function () {
             var closestDamagedStructure = towerArray[i].pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => ((structure.structureType == STRUCTURE_RAMPART && structure.hits < 50000) ||
                                         (structure.structureType == STRUCTURE_WALL && structure.hits < 20000) ||
-                                        (structure.structureType == STRUCTURE_CONTAINER && structure.hits < 15000) ||
+                                        (structure.structureType == STRUCTURE_CONTAINER && structure.hits < 150000) ||
                                         (structure.structureType == STRUCTURE_ROAD && structure.hits < 2500))
             });
 
