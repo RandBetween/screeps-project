@@ -172,7 +172,7 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester2', harvestPhase: true});
     } else if(haulers.length < 4) {
         Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'hauler', deliverPhase: false});
-    } else if(builders.length < 2 && buildingCount.length > 0) {
+    } else if(builders.length < 2 && buildingCount > 0) {
         Game.spawns['Spawn1'].createCreep(builderAttributes[attributeLevel], undefined, {role: 'builder', harvestPhase: true});
     } else if(upgraders.length < 3) {
         Game.spawns['Spawn1'].createCreep(upgraderAttributes[attributeLevel], undefined, {role: 'upgrader', harvestPhase: true});
