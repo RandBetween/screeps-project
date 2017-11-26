@@ -52,7 +52,7 @@ module.exports = function (creep) {
         if (upgrade_container.store[RESOURCE_ENERGY] < upgrade_container.storeCapacity) {
             targets.push(upgrade_container);
         };
-        
+       
         if(targets.length == 0) {
             targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -60,7 +60,7 @@ module.exports = function (creep) {
                 }
             });
         }
-    
+  
         /**console.log(targets.length);**/
     
         /** Withdraw phase for hauler creep **/
