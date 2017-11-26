@@ -49,9 +49,11 @@ module.exports = function (creep) {
         // Add upgrade container to target array
         
         var upgrade_container = Game.getObjectById("5a1790beb85730575a24902f");
-        if (upgrade_container.store[RESOURCE_ENERGY] < upgrade_container.storeCapacity) {
+        if (upgrade_container.store[RESOURCE_ENERGY] < upgrade_container.storeCapacity - 500) {
             targets.push(upgrade_container);
         };
+
+        // If no structures require energy, add surplus energy to storage structure
        
         if(targets.length == 0) {
             targets = creep.room.find(FIND_STRUCTURES, {
