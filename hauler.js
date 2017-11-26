@@ -4,23 +4,56 @@ module.exports = function (creep) {
         sources.push(Game.getObjectById("5a16f3f574ff7112607ba108"));
         sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
     
-        var targets = creep.room.find(FIND_STRUCTURES, {
+    
+        var targets = [];
+        
+        // Add spawn to target array
+        var spawns = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
-    
-                return (((structure.structureType == STRUCTURE_SPAWN ||
-                        structure.structureType == STRUCTURE_EXTENSION ||
-                        structure.structureType == STRUCTURE_LAB) && structure.energy < structure.energyCapacity) ||
-                        (structure.structureType == STRUCTURE_TOWER && structure.energy < 700) ||
-                        (structure.structureType == STRUCTURE_TERMINAL && structure.store[RESOURCE_ENERGY] < 10000));
-    
+                return (structure.structureType == STRUCTURE_SPAWN &&
+                structure.energy < structure.energyCapacity);
+            }
+        });
+
+        if (spawns.length > 0) {
+            targets.push(spawns[0]);
+        }
+
+        // Add extensions to target array
+        
+        var extensions = creep.room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (structure.structureType == STRUCTURE_EXTENSION &&
+                structure.energy < structure.energyCapacity);
+            }
+        });
+
+        if (extensions.length > 0) {
+            for (i = 0; i < extensions.length; i++) {
+                targets.push(extensions[i])
+            }
+        };
+        
+        // Add Tower to target array
+
+        var tower = creep.room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (structure.structureType == STRUCTURE_TOWER &&
+                structure.energy < 700);
             }
         });
         
-        targets.push(Game.getObjectById("5a1790beb85730575a24902f"));
+        if (tower.length > 0) {
+            targets.push(tower[0])
+        };
+
+        // Add upgrade container to target array
         
-        var targets2 = []
-        targets2.push(Game.getObjectById("5a1790beb85730575a24902f"));
-    
+        var upgrade_container = Game.getObjectById("5a1790beb85730575a24902f");
+        if (upgrade_container.store[RESOURCE_ENERGY] < upgrade_container.storeCapacity) {
+            targets.push(upgrade_container);
+        };
+        
         if(targets.length == 0) {
             targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -91,12 +124,10 @@ module.exports = function (creep) {
         } else if(creep.memory.deliverPhase == true && creep.carry.energy > 0) {
             if(targets.length > 0) {
     
-                for (var i = 0; i < targets.length; i++) {
-    
-                    if(creep.transfer(targets[i], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(targets[i]);
-                    }
+                if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0]);
                 }
+                    
             } else if (targets2.length > 0) {
                 if(creep.transfer(targets2[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets2[0]);
