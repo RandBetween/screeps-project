@@ -4,7 +4,6 @@ module.exports = function (creep) {
         sources.push(Game.getObjectById("5a16f3f574ff7112607ba108"));
         sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
     
-    
         var targets = [];
         
         // Add spawn to target array
