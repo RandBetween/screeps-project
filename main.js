@@ -174,7 +174,7 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'hauler', deliverPhase: false});
     } else if(builders.length < 2 && buildingCount > 0) {
         Game.spawns['Spawn1'].createCreep(builderAttributes[attributeLevel], undefined, {role: 'builder', harvestPhase: true});
-    } else if(upgraders.length < 3) {
+    } else if(upgraders.length < 2) {
         Game.spawns['Spawn1'].createCreep(upgraderAttributes[attributeLevel], undefined, {role: 'upgrader', harvestPhase: true});
     } /*else if(invaders.length > 1) {
         Game.spawns['Spawn1'].createCreep([ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'invader'});

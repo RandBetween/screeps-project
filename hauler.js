@@ -16,6 +16,8 @@ module.exports = function (creep) {
             }
         });
         
+        targets.push(Game.getObjectById("5a1790beb85730575a24902f"));
+        
         var targets2 = []
         targets2.push(Game.getObjectById("5a1790beb85730575a24902f"));
     

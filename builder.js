@@ -1,15 +1,13 @@
 module.exports = function (creep) {
     
         sources = [];
-        sources.push(Game.getObjectById("5a14b8e45f43c80a33d60efc"));
+        sources.push(Game.getObjectById("5a19c44d9bc92518b838df2f"));
     
         if (creep.memory.harvestPhase == true && creep.carry.energy < creep.carryCapacity) {
     
             for(var i = 0; i < sources.length; i++) {
-                if(sources[i].energy > 0) {
-                    if(creep.withdraw(sources[i], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(sources[i]);
-                    }
+                if(creep.withdraw(sources[i], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(sources[i]);
                 }
             }
     
