@@ -170,7 +170,7 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester', harvestPhase: true});
     } else if(harvesters2.length < 1 || (harvesters2.length == 1 && harvesters2[0].ticksToLive < 50)) {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester2', harvestPhase: true});
-    } else if(haulers.length < 4) {
+    } else if(haulers.length < 5) {
         Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'hauler', deliverPhase: false});
     } else if(builders.length < 2 && buildingCount > 0) {
         Game.spawns['Spawn1'].createCreep(builderAttributes[attributeLevel], undefined, {role: 'builder', harvestPhase: true});
