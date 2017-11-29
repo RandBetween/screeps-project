@@ -122,6 +122,14 @@ module.exports.loop = function () {
             }
         }
     }
+    
+    // LINK FUNCTION
+    var roomLink = Game.getObjectById("5a1dfd9971050f57ee51a8c3");
+    var targetLink = Game.getObjectById("5a1e0745f8b2a13832ecff45");
+    if (targetLink.energy < 600) {
+        roomLink.transferEnergy(targetLink);
+    };
+    
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var harvesters2 = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester2');
@@ -170,7 +178,7 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester', harvestPhase: true});
     } else if(harvesters2.length < 1 || (harvesters2.length == 1 && harvesters2[0].ticksToLive < 50)) {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester2', harvestPhase: true});
-    } else if(haulers.length < 5) {
+    } else if(haulers.length < 3) {
         Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'hauler', deliverPhase: false});
     } else if(builders.length < 2 && buildingCount > 0) {
         Game.spawns['Spawn1'].createCreep(builderAttributes[attributeLevel], undefined, {role: 'builder', harvestPhase: true});

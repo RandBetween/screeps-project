@@ -45,16 +45,25 @@ module.exports = function (creep) {
         if (tower.length > 0) {
             targets.push(tower[0])
         };
+        
+        // Add link to target array
+        
+        var link = Game.getObjectById("5a1dfd9971050f57ee51a8c3");
+        if (link.energy < link.energyCapacity) {
+            targets.push(link);
+        };
 
-        // Add upgrade container to target array
+        /* Add upgrade container to target array
         
         var upgrade_container = Game.getObjectById("5a1790beb85730575a24902f");
         if (upgrade_container.store[RESOURCE_ENERGY] < upgrade_container.storeCapacity - 500) {
             targets.push(upgrade_container);
         };
+        
+        */
 
         // If no structures require energy, add surplus energy to storage structure
-       
+        
         if(targets.length == 0) {
             targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
