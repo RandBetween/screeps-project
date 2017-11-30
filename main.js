@@ -7,6 +7,7 @@ var invader = require('invader');
 var forager = require('forager');
 var miner = require('miner');
 var claimer = require('claimer');
+var replenisher = require('replenisher');
 
 var builders = [];
 var upgraders = [];
@@ -17,6 +18,7 @@ var invaders = [];
 var miners = [];
 var foragers = [];
 var claimers = [];
+var replenishers = [];
 
 for (var i in Game.creeps) {
     if(Game.creeps[i].memory.role == 'builder') {
@@ -45,6 +47,9 @@ for (var i in Game.creeps) {
     }
     if(Game.creeps[i].memory.role == 'claimer') {
         claimers.push(Game.creeps[i]);
+    }
+    if(Game.creeps[i].memory.role == 'replenisher') {
+        replenishers.push(Game.creeps[i]);
     }
 }
 
@@ -145,6 +150,7 @@ module.exports.loop = function () {
     var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
     var foragers = _.filter(Game.creeps, (creep) => creep.memory.role == 'forager');
     var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
+    var replenishers = _.filter(Game.creeps, (creep) => creep.memory.role == 'replenisher');
 
     var harvesterAttributes = {1 : [WORK, WORK, MOVE],
       2 : [WORK, WORK, WORK, WORK, WORK, MOVE],
@@ -186,13 +192,15 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester', harvestPhase: true});
     } else if(harvesters2.length < 1 || (harvesters2.length == 1 && harvesters2[0].ticksToLive < 50)) {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester2', harvestPhase: true});
-    } else if(haulers.length < 3) {
+    } else if(haulers.length < 2) {
         Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'hauler', deliverPhase: false});
+    } else if(replenishers.length < 2) {
+        Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'replenisher', deliverPhase: false});
     } else if(builders.length < 1 && buildingCount > 0) {
         Game.spawns['Spawn1'].createCreep(builderAttributes[attributeLevel], undefined, {role: 'builder', harvestPhase: true});
     } else if(upgraders.length < 2) {
         Game.spawns['Spawn1'].createCreep(upgraderAttributes[attributeLevel], undefined, {role: 'upgrader', harvestPhase: true});
-    } else if(foragers.length < 1) {
+    } else if(foragers.length < 2 || (foragers.length <= 2 && (foragers[0].ticksToLive < 50 || foragers[1].ticksToLive < 50))) {
         Game.spawns['Spawn1'].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'forager', harvestPhase: true});
     } else if(claimers.length > 999) {
         Game.spawns['Spawn1'].createCreep(claimerAttributes, undefined, {role: 'claimer'});
@@ -222,6 +230,8 @@ module.exports.loop = function () {
             forager(creep);
         } else if(creep.memory.role == 'claimer') {
             claimer(creep);
+        } else if(creep.memory.role == 'replenisher') {
+            replenisher(creep);
         }
     }
 }
