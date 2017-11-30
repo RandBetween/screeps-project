@@ -3,6 +3,7 @@ var harvester2 = require('harvester2');
 var upgrader = require('upgrader');
 var builder = require('builder');
 var hauler = require('hauler');
+var hauler2 = require('hauler2');
 var invader = require('invader');
 var forager = require('forager');
 var miner = require('miner');
@@ -14,6 +15,7 @@ var upgraders = [];
 var harvesters = [];
 var harvesters2 = [];
 var haulers = [];
+var haulers2 = [];
 var invaders = [];
 var miners = [];
 var foragers = [];
@@ -35,6 +37,9 @@ for (var i in Game.creeps) {
     }
     if(Game.creeps[i].memory.role == 'hauler') {
         haulers.push(Game.creeps[i]);
+    }
+    if(Game.creeps[i].memory.role == 'hauler2') {
+        haulers2.push(Game.creeps[i]);
     }
     if(Game.creeps[i].memory.role == 'invader') {
         invaders.push(Game.creeps[i]);
@@ -146,6 +151,7 @@ module.exports.loop = function () {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler');
+    var haulers2 = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler2');
     var invaders = _.filter(Game.creeps, (creep) => creep.memory.role == 'invader');
     var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
     var foragers = _.filter(Game.creeps, (creep) => creep.memory.role == 'forager');
@@ -192,8 +198,10 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester', harvestPhase: true});
     } else if(harvesters2.length < 1 || (harvesters2.length == 1 && harvesters2[0].ticksToLive < 50)) {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester2', harvestPhase: true});
-    } else if(haulers.length < 2) {
+    } else if(haulers.length < 1 || hauler.length == 1 && hauler.ticksToLive < 20) {
         Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'hauler', deliverPhase: false});
+    } else if(haulers2.length < 1 || haulers2.length == 1 && haulers2.ticksToLive < 20) {
+        Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'hauler2', deliverPhase: false});
     } else if(replenishers.length < 2) {
         Game.spawns['Spawn1'].createCreep(haulerAttributes[attributeLevel], undefined, {role: 'replenisher', deliverPhase: false});
     } else if(builders.length < 1 && buildingCount > 0) {
@@ -222,6 +230,8 @@ module.exports.loop = function () {
             builder(creep);
         } else if(creep.memory.role == 'hauler') {
             hauler(creep);
+        } else if(creep.memory.role == 'hauler2') {
+            hauler2(creep);
         } else if(creep.memory.role == 'invader') {
             invader(creep);
         } else if(creep.memory.role == 'miner') {

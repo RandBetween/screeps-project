@@ -1,7 +1,6 @@
 module.exports = function (creep) {
     
         var sources = [];
-        sources.push(Game.getObjectById("5a16f3f574ff7112607ba108"));
         sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
     
         var target = creep.room.find(FIND_STRUCTURES, {
