@@ -208,7 +208,7 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].createCreep(builderAttributes[attributeLevel], undefined, {role: 'builder', harvestPhase: true});
     } else if(upgraders.length < 2) {
         Game.spawns['Spawn1'].createCreep(upgraderAttributes[attributeLevel], undefined, {role: 'upgrader', harvestPhase: true});
-    } else if(foragers.length < 2 || (foragers.length <= 2 && (foragers[0].ticksToLive < 50 || foragers[1].ticksToLive < 50))) {
+    } else if(foragers.length < 3 || (foragers.length <= 2 && (foragers[0].ticksToLive < 50 || foragers[1].ticksToLive < 50))) {
         Game.spawns['Spawn1'].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'forager', harvestPhase: true});
     } else if(claimers.length > 999) {
         Game.spawns['Spawn1'].createCreep(claimerAttributes, undefined, {role: 'claimer'});
