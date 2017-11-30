@@ -19,7 +19,7 @@ module.exports = function (creep) {
     } else if(creep.memory.harvestPhase == true && creep.carry.energy == creep.carryCapacity) {
       creep.memory.harvestPhase = false;
   
-    } else if(creep.memory.harvestPhase == false && creep.carry.energy >= 50) {
+    } else if(creep.memory.harvestPhase == false && creep.carry.energy > 0) {
   
       var constructionSites = creep.room.find(FIND_CONSTRUCTION_SITES);
   
@@ -44,9 +44,8 @@ module.exports = function (creep) {
         }
       }
   
-    } else if(creep.memory.harvestPhase == false && creep.carry.energy < 50) {
+    } else if(creep.memory.harvestPhase == false && creep.carry.energy == 0) {
       creep.memory.harvestPhase = true;
     }
   
-  }
-  
+  };
