@@ -5,7 +5,7 @@ module.exports = function (creep) {
     
         if (creep.memory.harvestPhase == true && creep.carry.energy < creep.carryCapacity) {
 
-            if (source.energy > 0) {
+            if (source.energy >= 0) {
                 if(creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(source);
                 };
