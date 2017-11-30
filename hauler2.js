@@ -17,7 +17,7 @@ module.exports = function (creep) {
             });
             
     
-            if (dropenergy && sources[0].store[RESOURCE_ENERGY] < 1500 && sources[1].store[RESOURCE_ENERGY]) {
+            if (dropenergy && sources[0].store[RESOURCE_ENERGY] < 1500) {
                 if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(dropenergy);
                     }
