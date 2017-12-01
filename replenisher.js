@@ -1,4 +1,4 @@
-module.exports = function (creep) {
+module.exports = function (creep, workerNum) {
     
         var source = Game.getObjectById("5a19c44d9bc92518b838df2f");
     
@@ -63,12 +63,16 @@ module.exports = function (creep) {
     
         /** Moves hauler to various delivery spots **/
         } else if(creep.memory.deliverPhase == true && creep.carry.energy > 0) {
-            if(targets.length > 0) {
+            if(workerNum == 1) {
     
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0]);
                 }
                     
+            } else if(workerNum == 2) {
+                if(creep.transfer(targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[targets.length - 1]);
+                }
             }
     
         /** changes creep to haul mode **/
