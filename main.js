@@ -139,12 +139,17 @@ module.exports.loop = function () {
     }
     
     // LINK FUNCTION
-    var roomLink = Game.getObjectById("5a1dfd9971050f57ee51a8c3");
+    var roomLinks = []
+    roomLinks.push(Game.getObjectById("5a1dfd9971050f57ee51a8c3"));
+    roomLinks.push(Game.getObjectById("5a231ffa546aad7ee351824a"));
     var targetLink = Game.getObjectById("5a1e0745f8b2a13832ecff45");
     if (targetLink.energy < 600) {
-        roomLink.transferEnergy(targetLink);
+        if (roomLinks[0].cooldown == 0) {
+            roomLinks[0].transferEnergy(targetLink);
+        } else if (roomLinks[1].cooldown == 0) {
+            roomLinks[1].transferEnergy(targetLink);
+        }
     };
-    
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var harvesters2 = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester2');
