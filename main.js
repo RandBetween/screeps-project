@@ -192,7 +192,7 @@ module.exports.loop = function () {
       6 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]
     };
 
-    var claimerAttributes = [CLAIM, MOVE, MOVE]
+    var claimerAttributes = [CLAIM, CLAIM, MOVE]
 
     if(harvesters.length < 1 || (harvesters.length == 1 && harvesters[0].ticksToLive < 40)) {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester', harvestPhase: true});
@@ -210,7 +210,8 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].createCreep(upgraderAttributes[attributeLevel], undefined, {role: 'upgrader', harvestPhase: true});
     } else if(foragers.length < 4 || (foragers.length <= 2 && (foragers[0].ticksToLive < 50 || foragers[1].ticksToLive < 50))) {
         Game.spawns['Spawn1'].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'forager', harvestPhase: true});
-    } else if(claimers.length < 1 && typeof Game.getObjectById("5873bc4911e3e4361b4d759b").owner == 'undefined') {
+    } else if(claimers.length < 1 && Game.getObjectById("5873bc4911e3e4361b4d759b").reservation.ticksToEnd < 2500 ||
+            claimers.length == 1 && Game.getObjectById("5873bc4911e3e4361b4d759b").reservation.ticksToEnd < 2500 && claimers[0].ticksToLive < 45) {
         Game.spawns['Spawn1'].createCreep(claimerAttributes, undefined, {role: 'claimer'});
     } /*else if(invaders.length > 1) {
         Game.spawns['Spawn1'].createCreep([ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'invader'});
