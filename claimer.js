@@ -7,7 +7,7 @@ module.exports = function (creep) {
     if (creep.room.name != dest) {
         creep.moveTo(creep.pos.findClosestByPath(creep.room.findExitTo(dest)));
     } else if (creep.room.name == dest) {
-        if(creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+        if(creep.reserveController(creep.room.controller) == ERR_NOT_IN_RANGE) {
             creep.moveTo(creep.room.controller);
         }
     }
