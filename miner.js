@@ -1,15 +1,15 @@
 module.exports = function (creep) {
     
-        var x = 12;
-        var y = 18;
+        var x = 31;
+        var y = 31;
     
-        var source = Game.getObjectById("57efa0c1b8c6899106eaedc4");
-        var target = Game.getObjectById("5814ed1e13260d76303f62c4");
+        var source = Game.getObjectById("5873c16763ad7a7555b7b03b");
+        var storage = Game.getObjectById("5a19c44d9bc92518b838df2f");
     
         if (creep.memory.harvestPhase == true && _.sum(creep.carry) < creep.carryCapacity) {
     
           var dropenergy = creep.pos.findClosestByPath(FIND_DROPPED_ENERGY, {
-              filter: (d) => {return (d.resourceType == RESOURCE_UTRIUM)}
+              filter: (d) => {return (d.resourceType == RESOURCE_HYDROGEN)}
           });
     
           if (dropenergy) {
@@ -20,13 +20,13 @@ module.exports = function (creep) {
             creep.moveTo(x,y);
           }
     
-        } else if (creep.memory.harvestPhase == true && creep.carry[RESOURCE_UTRIUM] == creep.carryCapacity) {
+        } else if (creep.memory.harvestPhase == true && creep.carry[RESOURCE_HYDROGEN] == creep.carryCapacity) {
           creep.memory.harvestPhase = false;
     
-        } else if (creep.memory.harvestPhase == false && creep.carry[RESOURCE_UTRIUM] > 0) {
+        } else if (creep.memory.harvestPhase == false && creep.carry[RESOURCE_HYDROGEN] > 0) {
     
-          if(creep.transfer(target, RESOURCE_UTRIUM) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(target);
+          if(creep.transfer(storage, RESOURCE_UTRIUM) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(storage);
           }
     
         } else if (creep.memory.harvestPhase == false) {

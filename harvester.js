@@ -8,5 +8,5 @@ module.exports = function (creep) {
         if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
             creep.moveTo(x, y);
         }
-    }
+    };
     
