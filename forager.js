@@ -1,9 +1,9 @@
 module.exports = function (creep) {
   
-    var dest = 'W74N83';
+    var dest = 'W76N83';
     var home = 'W75N83';
   
-    var source = Game.getObjectById("5873bc4911e3e4361b4d759a");
+    var source = Game.getObjectById("5873bc4411e3e4361b4d74e1");
     var storage = Game.getObjectById("5a19c44d9bc92518b838df2f");
   
     if(creep.memory.harvestPhase == true && creep.carry.energy < creep.carryCapacity) {
