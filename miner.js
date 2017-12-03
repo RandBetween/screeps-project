@@ -25,7 +25,7 @@ module.exports = function (creep) {
     
         } else if (creep.memory.harvestPhase == false && creep.carry[RESOURCE_HYDROGEN] > 0) {
     
-          if(creep.transfer(storage, RESOURCE_UTRIUM) == ERR_NOT_IN_RANGE) {
+          if(creep.transfer(storage, RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
               creep.moveTo(storage);
           }
     
