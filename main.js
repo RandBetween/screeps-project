@@ -197,7 +197,7 @@ module.exports.loop = function () {
       6 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]
     };
 
-    var claimerAttributes = [CLAIM, CLAIM, MOVE]
+    var claimerAttributes = [CLAIM, MOVE]
 
     if(harvesters.length < 1 || (harvesters.length == 1 && harvesters[0].ticksToLive < 40)) {
         Game.spawns['Spawn1'].createCreep(harvesterAttributes[attributeLevel], undefined, {role: 'harvester', harvestPhase: true});
