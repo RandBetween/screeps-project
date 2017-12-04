@@ -1,7 +1,15 @@
-module.exports = function (creep) {
-    
-        var source = Game.getObjectById("5a1e0745f8b2a13832ecff45");
-        //var source2 = Game.getObjectById("5a19c44d9bc92518b838df2f");
+module.exports = function (creep, room) {
+
+        var source;
+        var target;
+
+        if (room == "W75N83") {
+            source = Game.getObjectById("5a1e0745f8b2a13832ecff45");
+            target = Game.getObjectById("5873bc4611e3e4361b4d753d");
+        } else if (room == "W76N83") {
+            source = Game.getObjectById("5a239349b45ebf5e61484b8f");
+            target = Game.getObjectById("5873bc4411e3e4361b4d74e0");
+        }  
     
         if (creep.memory.harvestPhase == true && creep.carry.energy < creep.carryCapacity) {
 
@@ -19,8 +27,8 @@ module.exports = function (creep) {
             creep.memory.harvestPhase = false;
     
         } else if(creep.memory.harvestPhase == false && creep.carry.energy > 0) {
-            if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller);
+            if(creep.upgradeController(target) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(target);
             }
     
         } else if(creep.memory.harvestPhase == false && creep.carry.energy == 0) {
