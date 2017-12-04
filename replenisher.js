@@ -1,7 +1,13 @@
-module.exports = function (creep, workerNum) {
+module.exports = function (creep, workerNum, room) {
+
+        var source;
     
-        var source = Game.getObjectById("5a19c44d9bc92518b838df2f");
-    
+        if (room == "W75N83") {
+            source = Game.getObjectById("5a19c44d9bc92518b838df2f");
+        } else if (room == "W76N83") {
+            //source = Game.getObjectById("5a239349b45ebf5e61484b8f");
+        }   
+           
         var targets = [];
         
         // Add spawn to target array

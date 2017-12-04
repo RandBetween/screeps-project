@@ -215,7 +215,7 @@ module.exports.loop = function () {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler', deliverPhase: false});
         } else if(haulers2[room.name].length < 1) {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler2', deliverPhase: false});
-        } else if(replenishers[room.name].length < 2) {
+        } else if(replenishers[room.name].length < 2 && room.name == "W75N83") {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'replenisher', deliverPhase: false});
         } else if(builders[room.name].length < 1 && Memory.buildingCount[room.name] > 0) {
             Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'builder', harvestPhase: true});
