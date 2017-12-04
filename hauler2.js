@@ -1,14 +1,23 @@
-module.exports = function (creep) {
-    
+module.exports = function (creep, room) {
+
         var sources = [];
-        sources.push(Game.getObjectById("5a16f3f574ff7112607ba108"));
-        sources.push(Game.getObjectById("5a23405c2724dd02d7a62ee8"));
-    
-        var target = creep.room.find(FIND_STRUCTURES, {
+        if (room == "W75N83") {
+            sources.push(Game.getObjectById("5a16f3f574ff7112607ba108"));
+            sources.push(Game.getObjectById("5a23405c2724dd02d7a62ee8"));
+        
+            var target = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_STORAGE);
+                    }
+            });
+        } else if (room == "W76N83") {
+            //sources.push(Game.getObjectById(""));
+            var target = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_STORAGE);
+                    return (structure.structureType == STRUCTURE_SPAWN);
                 }
-        });
+            });
+        }    
         
         const carry_total = _.sum(creep.carry);
 

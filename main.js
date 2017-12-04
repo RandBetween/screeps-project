@@ -240,23 +240,23 @@ module.exports.loop = function () {
         } else if(creep.memory.role == 'harvester2') {
             harvester2(creep, creep.room.name);
         } else if(creep.memory.role == 'upgrader') {
-            upgrader(creep);
+            upgrader(creep, creep.room.name);
         } else if(creep.memory.role == 'builder') {
-            builder(creep);
+            builder(creep, creep.room.name);
         } else if(creep.memory.role == 'hauler') {
-            hauler(creep);
+            hauler(creep, creep.room.name);
         } else if(creep.memory.role == 'hauler2') {
-            hauler2(creep);
+            hauler2(creep, creep.room.name);
         } else if(creep.memory.role == 'invader') {
-            invader(creep);
+            invader(creep, creep.room.name);
         } else if(creep.memory.role == 'miner') {
-            miner(creep);
+            miner(creep, creep.room.name);
         } else if(creep.memory.role == 'forager') {
-            forager(creep);
+            forager(creep, creep.room.name);
         } else if(creep.memory.role == 'claimer') {
-            claimer(creep);
+            claimer(creep, creep.room.name);
         } else if(creep.memory.role == 'replenisher') {
-            replenisher(creep, replenisherIndex);
+            replenisher(creep, replenisherIndex, creep.room.name);
             replenisherIndex = 2;
         }
     }

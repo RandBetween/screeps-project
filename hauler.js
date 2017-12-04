@@ -1,14 +1,22 @@
-module.exports = function (creep) {
+module.exports = function (creep, room) {
     
         var sources = [];
-        sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
-    
-        var target = creep.room.find(FIND_STRUCTURES, {
+        if (room == "W75N83") {
+            sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
+            var target = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_STORAGE);
                 }
-        });
-    
+            });
+        } else if (room == "W76N83") {
+            sources.push(Game.getObjectById("5a23f17e53a48728e5095797"));
+            var target = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_SPAWN);
+                }
+            });
+        }      
+       
         /** Withdraw phase for hauler creep **/
         if (creep.memory.deliverPhase == false && creep.carry.energy < creep.carryCapacity) {
                        
