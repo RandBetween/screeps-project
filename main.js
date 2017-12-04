@@ -47,72 +47,72 @@ for (var i in Game.creeps) {
     }
     if(Game.creeps[i].memory.role == 'upgrader') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            upgraders["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            upgraders["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'harvester') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            harvesters["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            harvesters["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'harvester2') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            harvesters2["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            harvesters2["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'hauler') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            haulers["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            haulers["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'hauler2') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            haulers2["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            haulers2["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'invader') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            invaders["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            invaders["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'miner') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            miners["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            miners["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'forager') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            foragers["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            foragers["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'claimer') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            claimers["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            claimers["W75N83"].push(Game.creeps[i]);
         }        
     }
     if(Game.creeps[i].memory.role == 'replenisher') {
         if (Game.creeps[i].memory.spawnRoom == "Spawn2") {
-            builders["W76N83"].push(Game.creeps[i]);
+            replenishers["W76N83"].push(Game.creeps[i]);
         } else {
-            builders["W75N83"].push(Game.creeps[i]);
+            replenishers["W75N83"].push(Game.creeps[i]);
         }        
     }
 }
