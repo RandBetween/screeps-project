@@ -211,13 +211,13 @@ module.exports.loop = function () {
             Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(harvesters2[room.name].length < 1) {
             Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});
-        } else if(haulers[room.name].length < 1) {
+        } else if(haulers[room.name].length < 1 && room.name == "W75N83") {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler', deliverPhase: false, spawnRoom: spawn[0].name});
         } else if(haulers2[room.name].length < 1 && room.name == "W75N83") {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler2', deliverPhase: false, spawnRoom: spawn[0].name});
         } else if(replenishers[room.name].length < 2 && room.name == "W75N83") {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
-        } else if(builders[room.name].length < 1 && Memory.buildingCount[room.name] > 0 && room.name == "W75N83") {
+        } else if(builders[room.name].length < 1 && Memory.buildingCount[room.name] > 0) {
             Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'builder', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(upgraders[room.name].length < 1) {
             Game.spawns[spawn[0].name].createCreep(upgraderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'upgrader', harvestPhase: true, spawnRoom: spawn[0].name});
