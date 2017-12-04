@@ -251,9 +251,9 @@ module.exports.loop = function () {
             filter: {structureType: STRUCTURE_SPAWN}
         });
 
-        if (harvesters[room.name].length < 1 || (harvesters[room.name].length < 2 && room.name == "W76N83")) {
+        if (harvesters[room.name].length < 1 || (harvesters[room.name].length < 3 && room.name == "W76N83")) {
             Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});
-        } else if(harvesters2[room.name].length < 1 || harvesters2[room.name].length < 2 && room.name == "W76N83") {
+        } else if(harvesters2[room.name].length < 1) {
             Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(haulers[room.name].length < 1 && room.name == "W75N83") {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler', deliverPhase: false, spawnRoom: spawn[0].name});
