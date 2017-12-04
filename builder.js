@@ -1,8 +1,12 @@
-module.exports = function (creep) {
-    
-        sources = [];
-        sources.push(Game.getObjectById("5a19c44d9bc92518b838df2f"));
-    
+module.exports = function (creep, room) {
+
+        var sources = [];
+        if (room == "W75N83") {
+            sources.push(Game.getObjectById("5a19c44d9bc92518b838df2f"));
+        } else if (room == "W76N83") {
+            sources.push(Game.getObjectById("5a239349b45ebf5e61484b8f"));
+        }
+            
         if (creep.memory.harvestPhase == true && creep.carry.energy < creep.carryCapacity) {
     
             for(var i = 0; i < sources.length; i++) {
