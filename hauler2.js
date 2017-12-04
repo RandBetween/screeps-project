@@ -37,27 +37,32 @@ module.exports = function (creep, room) {
                 
                 var largestContainer;
 
-                if (sources[0].store[RESOURCE_ENERGY] >= sources[1].store[RESOURCE_HYDROGEN]) {
-
-                    largestContainer = sources[0];
-
-                    if (largestContainer.store[RESOURCE_ENERGY] >= 100) {
-                        if(creep.withdraw(largestContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(largestContainer);
-                        }
-                      }
-
+                if (room == "W75N83") {
+                    if (sources[0].store[RESOURCE_ENERGY] >= sources[1].store[RESOURCE_HYDROGEN]) {
+                        
+                        largestContainer = sources[0];
+    
+                        if (largestContainer.store[RESOURCE_ENERGY] >= 100) {
+                            if(creep.withdraw(largestContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(largestContainer);
+                            }
+                            }
+    
+                    } else {
+    
+                        largestContainer = sources[1];
+    
+                        if (largestContainer.store[RESOURCE_HYDROGEN] >= 100) {
+                            if(creep.withdraw(largestContainer, RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(largestContainer);
+                            }
+                            }
+    
+                    }
                 } else {
-
-                    largestContainer = sources[1];
-
-                    if (largestContainer.store[RESOURCE_HYDROGEN] >= 100) {
-                        if(creep.withdraw(largestContainer, RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(largestContainer);
-                        }
-                      }
-
+                    //
                 }
+
             }
 
         /** Changes creep to deliver phase **/
