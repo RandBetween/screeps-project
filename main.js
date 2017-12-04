@@ -207,9 +207,9 @@ module.exports.loop = function () {
             filter: {structureType: STRUCTURE_SPAWN}
         });
 
-        if (harvesters[room.name].length < 1) {
+        if (harvesters[room.name].length < 1 || (harvesters[room.name].length < 2 && room.name == "W76N83")) {
             Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});
-        } else if(harvesters2[room.name].length < 1) {
+        } else if(harvesters2[room.name].length < 1 || harvesters2[room.name].length < 2 && room.name == "W76N83") {
             Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(haulers[room.name].length < 1 && room.name == "W75N83") {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler', deliverPhase: false, spawnRoom: spawn[0].name});
@@ -227,7 +227,7 @@ module.exports.loop = function () {
             Game.spawns[spawn[0].name].createCreep(claimerAttributes, undefined, {role: 'claimer', spawnRoom: spawn[0].name});
         } /*else if(invaders.length > 1) {
             Game.spawns[spawn[0].name].createCreep([ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'invader', spawnRoom: spawn[0].name}); */
-        else if(miners[room.name].length < 1) {
+        else if(miners[room.name].length < 1 && room.name == "W75N83") {
             Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE], undefined, {role: 'miner', harvestPhase: true, spawnRoom: spawn[0].name});
         }
     }
