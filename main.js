@@ -261,6 +261,3 @@ module.exports.loop = function () {
         }
     }
 }
-
-/**console.log(Game.cpu.getUsed());**/
-/** console.log(Game.cpu.bucket); **/
