@@ -75,6 +75,8 @@ module.exports.loop = function () {
         var buildingCount = room.find(FIND_MY_CONSTRUCTION_SITES).length;
         Memory.buildingCount[room.name] = buildingCount;
     }
+    // Delete once W room is fully functional
+    Memory.attributeLevel["W76N83"] = 1;
     
     /** TOWER FUNCTIONS **/
     var towerArray = Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES, {
