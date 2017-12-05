@@ -1,5 +1,11 @@
 module.exports = function (creep, room) {
     
+        if (room == "Spawn1") {
+            room = "W75N83";
+        } else {
+            room = "W76N83";
+        }
+
         var sources = [];
         if (room == "W75N83") {
             sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
@@ -15,7 +21,7 @@ module.exports = function (creep, room) {
                     return (structure.structureType == STRUCTURE_SPAWN);
                 }
             });
-        }      
+        }
        
         /** Withdraw phase for hauler creep **/
         if (creep.memory.deliverPhase == false && creep.carry.energy < creep.carryCapacity) {
@@ -64,4 +70,3 @@ module.exports = function (creep, room) {
             creep.memory.deliverPhase = false;
         }
     }
-    

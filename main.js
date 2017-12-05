@@ -250,17 +250,29 @@ module.exports.loop = function () {
         var spawn = room.find(FIND_MY_STRUCTURES, {
             filter: {structureType: STRUCTURE_SPAWN}
         });
-
-        if (harvesters[room.name].length < 1 || (harvesters[room.name].length < 3 && room.name == "W76N83")) {
-            Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});
+        
+        console.log(room.name);
+        console.log(replenishers[room.name].length);
+        //console.log(harvesters[room.name].length);
+        //console.log(harvesters2[room.name].length);
+        //console.log(haulers[room.name].length);
+        //console.log(haulers2[room.name].length);
+        //console.log(builders[room.name].length);
+        //console.log(upgraders[room.name].length);
+        //console.log(foragers[room.name].length);
+        //console.log(claimers[room.name].length);
+        //console.log(miners[room.name].length);
+        
+        if(replenishers[room.name].length < 2) {
+            Game.spawns[spawn[0].name].createCreep([CARRY, CARRY, MOVE], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
+        } else if (harvesters[room.name].length < 1) {
+            Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, MOVE], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(harvesters2[room.name].length < 1) {
-            Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});
+            Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, MOVE], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(haulers[room.name].length < 1 && room.name == "W75N83") {
-            Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler', deliverPhase: false, spawnRoom: spawn[0].name});
+            Game.spawns[spawn[0].name].createCreep([CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, {role: 'hauler', deliverPhase: false, spawnRoom: spawn[0].name});
         } else if(haulers2[room.name].length < 1 && room.name == "W75N83") {
-            Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler2', deliverPhase: false, spawnRoom: spawn[0].name});
-        } else if(replenishers[room.name].length < 2 && room.name == "W75N83") {
-            Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
+            Game.spawns[spawn[0].name].createCreep([CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, {role: 'hauler2', deliverPhase: false, spawnRoom: spawn[0].name});
         } else if(builders[room.name].length < 1 && Memory.buildingCount[room.name] > 0) {
             Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'builder', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(upgraders[room.name].length < 1) {
@@ -271,7 +283,7 @@ module.exports.loop = function () {
             Game.spawns[spawn[0].name].createCreep(claimerAttributes, undefined, {role: 'claimer', spawnRoom: spawn[0].name});
         } /*else if(invaders.length > 1) {
             Game.spawns[spawn[0].name].createCreep([ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'invader', spawnRoom: spawn[0].name}); */
-        else if(miners[room.name].length < 1 && room.name == "W75N83") {
+        else if(miners[room.name].length < 1) {
             Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE], undefined, {role: 'miner', harvestPhase: true, spawnRoom: spawn[0].name});
         }
     }
@@ -279,28 +291,31 @@ module.exports.loop = function () {
     var replenisherIndex = 1;
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
+        /*console.log(creep.name);
+        console.log(creep.memory.role);
+        console.log(creep.memory.spawnRoom); */
         if(creep.memory.role == 'harvester') {
-            harvester(creep, creep.room.name);
+            harvester(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'harvester2') {
-            harvester2(creep, creep.room.name);
+            harvester2(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'upgrader') {
-            upgrader(creep, creep.room.name);
+            upgrader(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'builder') {
-            builder(creep, creep.room.name);
+            builder(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'hauler') {
-            hauler(creep, creep.room.name);
+            hauler(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'hauler2') {
-            hauler2(creep, creep.room.name);
+            hauler2(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'invader') {
-            invader(creep, creep.room.name);
+            invader(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'miner') {
-            miner(creep, creep.room.name);
+            miner(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'forager') {
-            forager(creep, creep.room.name);
+            forager(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'claimer') {
-            claimer(creep, creep.room.name);
+            claimer(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'replenisher') {
-            replenisher(creep, replenisherIndex, creep.room.name);
+            replenisher(creep, replenisherIndex, creep.memory.spawnRoom);
             replenisherIndex = 2;
         }
     }

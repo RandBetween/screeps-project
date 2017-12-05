@@ -1,4 +1,10 @@
 module.exports = function (creep, room) {
+    
+        if (room == "Spawn1") {
+            room = "W75N83";
+        } else {
+            room = "W76N83";
+        }    
 
         var sources = [];
         if (room == "W75N83") {
