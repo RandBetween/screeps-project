@@ -47,7 +47,7 @@ module.exports = function (creep, room) {
     
                 }
     
-                if (largestContainer.store[RESOURCE_ENERGY] >= 250) {
+                if (largestContainer.store[RESOURCE_ENERGY] >= 100) {
                   if(creep.withdraw(largestContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                       creep.moveTo(largestContainer);
                   }

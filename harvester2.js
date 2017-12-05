@@ -7,7 +7,7 @@ module.exports = function (creep, room) {
         x = 40;
         y = 42;
 
-    } else if (room == "Spawn1") {
+    } else if (room == "Spawn2") {
         x = 29;
         y = 35;
     };
