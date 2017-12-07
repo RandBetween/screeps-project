@@ -163,7 +163,7 @@ module.exports.loop = function () {
               
         if ((calc_num_of_creeps("replenisher", room.name) < 2) || (calc_num_of_creeps("replenisher", room.name) < 1 && room.name == "W76N83")) {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
-        } else if ((calc_num_of_creeps("harvester", room.name) < 1) || (calc_num_of_creeps("harvester", room.name) < 3 && room.name == "W76N83")) {
+        } else if (calc_num_of_creeps("harvester", room.name) < 1) {
             Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(calc_num_of_creeps("harvester2", room.name) < 1) {
             Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});

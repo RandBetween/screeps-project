@@ -20,6 +20,7 @@ module.exports = function (creep, workerNum, spawn_name) {
             }   
                
             var targets = [];
+            var terminal_targets = [];
             
             // Add spawn to target array
             var spawns = creep.room.find(FIND_STRUCTURES, {
@@ -90,7 +91,7 @@ module.exports = function (creep, workerNum, spawn_name) {
     
                 if (RESOURCE_HYDROGEN in Game.rooms["W75N83"].storage.store) {
                     mineral_flag = true;
-                    targets.push(terminal[0]);
+                    terminal_targets.push(terminal[0]);
                 }
             };
                
@@ -114,7 +115,13 @@ module.exports = function (creep, workerNum, spawn_name) {
             } else if(creep.memory.deliverPhase == true && creep_carry_sum > 0) {
                 if(workerNum == 1) {
 
-                    if (!targets[0].structureType == STRUCTURE_TERMINAL) {
+                    if (!(targets.length > 0) && (mineral_flag == true || creep.carry[RESOURCE_HYDROGEN] > 0)) {
+                            if(creep.transfer(terminal[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(terminal[0]);
+                            }   
+                    }
+  
+                    if ((!targets[0].structureType == STRUCTURE_TERMINAL) && creep.carry.energy > 0) {
                         if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(targets[0]);
                         }                        
@@ -122,13 +129,20 @@ module.exports = function (creep, workerNum, spawn_name) {
                         if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(targets[0]);
                         }
-                        if(creep.transfer(targets[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(targets[0]);
+                        if(creep.transfer(terminal_targets[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(terminal_targets[0]);
                         }
                     }      
                         
                 } else if(workerNum == 2) {
-                    if (!targets[0].structureType == STRUCTURE_TERMINAL) {
+
+                    if (!(targets.length > 0) && (mineral_flag == true || creep.carry[RESOURCE_HYDROGEN] > 0)) {
+                        if(creep.transfer(terminal[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(terminal[0]);
+                        }   
+                    }
+
+                    if ((!targets[targets.length - 1].structureType) == STRUCTURE_TERMINAL && creep.carry.energy > 0) {
                         if(creep.transfer(targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(targets[targets.length - 1]);
                         }                        
@@ -136,8 +150,8 @@ module.exports = function (creep, workerNum, spawn_name) {
                         if(creep.transfer(targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(targets[targets.length - 1]);
                         }
-                        if(creep.transfer(targets[targets.length - 1], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(targets[targets.length - 1]);
+                        if(creep.transfer(terminal_targets[targets.length - 1], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(terminal_targets[targets.length - 1]);
                         }
                     }
                 }
