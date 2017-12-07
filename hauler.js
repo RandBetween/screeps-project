@@ -15,7 +15,7 @@ module.exports = function (creep, room) {
                 }
             });
         } else if (room == "W76N83") {
-            sources.push(Game.getObjectById("5a23f17e53a48728e5095797"));
+            sources.push(Game.getObjectById("5a2703bbfa26195b9283246d"));
             var target = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_SPAWN);
