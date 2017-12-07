@@ -75,7 +75,6 @@ module.exports.loop = function () {
         var buildingCount = room.find(FIND_MY_CONSTRUCTION_SITES).length;
         Memory.buildingCount[room.name] = buildingCount;
     }
-    // Delete once W room is fully functional
     Memory.attributeLevel["W76N83"] = 1;
     
     /** TOWER FUNCTIONS **/
@@ -117,7 +116,7 @@ module.exports.loop = function () {
         }
     };
 
-    var harvesterAttributes = {1 : [WORK, CARRY, CARRY, MOVE, MOVE],
+    var harvesterAttributes = {1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
       2 : [WORK, WORK, WORK, WORK, WORK, MOVE],
       3 : [WORK, WORK, WORK, WORK, WORK, MOVE],
       4: [WORK, WORK, WORK, WORK, WORK, MOVE],
@@ -135,7 +134,7 @@ module.exports.loop = function () {
       6 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE]
     };
 
-    var builderAttributes = {1 : [WORK, CARRY, CARRY, MOVE, MOVE],
+    var builderAttributes = {1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
       2 : [WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
       3 : [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
       4 : [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
@@ -143,7 +142,7 @@ module.exports.loop = function () {
       6 : [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]
     };
 
-    var upgraderAttributes = {1 : [WORK, CARRY, CARRY, MOVE, MOVE],
+    var upgraderAttributes = {1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
       2 : [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE],
       3 : [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE],
       4 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
@@ -187,7 +186,11 @@ module.exports.loop = function () {
         }
     }
 
-    var replenisherIndex = 1;
+    var replenisherIndex = {
+        "W75N83": 1,
+        "W76N83": 1
+    };
+
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
@@ -211,8 +214,8 @@ module.exports.loop = function () {
         } else if(creep.memory.role == 'claimer') {
             claimer(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'replenisher') {
-            replenisher(creep, replenisherIndex, creep.memory.spawnRoom);
-            replenisherIndex = 2;
+            replenisher(creep, replenisherIndex[creep.room.name], creep.memory.spawnRoom);
+            replenisherIndex[creep.room.name] = 2;
         }
     }
 }
