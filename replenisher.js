@@ -9,7 +9,6 @@ module.exports = function (creep, workerNum, spawn_name) {
             }
     
             var source;
-            var energy_needs = false;
             var mineral_flag = false;
             const creep_carry_sum = _.sum(creep.carry);
         
@@ -76,10 +75,6 @@ module.exports = function (creep, workerNum, spawn_name) {
                 targets.push(links[0]);
             }
 
-            if (targets.length > 0) {
-                energy_needs = true;
-            }
-
             // Add Terminal to target array
 
             if (room_name == "W75N83") {
@@ -97,11 +92,11 @@ module.exports = function (creep, workerNum, spawn_name) {
                
             /** Withdraw phase for hauler creep **/
             if (creep.memory.deliverPhase == false && creep_carry_sum < creep.carryCapacity) {
-                if (energy_needs == true) {
+                if (targets.length) {
                     if(creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(source);
                     };
-                } else if (energy_needs == false && mineral_flag == true) {
+                } else if (mineral_flag == true) {
                     if(creep.withdraw(source, RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(source);
                     };                    
@@ -114,35 +109,42 @@ module.exports = function (creep, workerNum, spawn_name) {
             /** Moves hauler to various delivery spots **/
             } else if(creep.memory.deliverPhase == true && creep_carry_sum > 0) {
                 if(workerNum == 1) {
-
-                    if (!(targets.length > 0) && (mineral_flag == true && creep.carry[RESOURCE_HYDROGEN] > 0)) {
+                    
+                    if ((targets.length > 0) && (mineral_flag == true && creep.carry[RESOURCE_HYDROGEN] > 0)) {
                             if(creep.transfer(terminal[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
                                 creep.moveTo(terminal[0]);
                             }   
-                    }
-  
-                    if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(targets[0]);
-                    }
-                    if(creep.transfer(terminal_targets[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(terminal_targets[0]);
-                    }
- 
+                    } else if (targets.length) {
+                        if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(targets[0]);
+                        }
+                    } else {
+                        if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(targets[0]);
+                        }
+                        if(creep.transfer(terminal_targets[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(terminal_targets[0]);
+                        }
+                    } 
                         
                 } else if(workerNum == 2) {
 
-                    if (!(targets.length > 0) && (mineral_flag == true && creep.carry[RESOURCE_HYDROGEN] > 0)) {
+                    if ((targets.length > 0) && (mineral_flag == true && creep.carry[RESOURCE_HYDROGEN] > 0)) {
                         if(creep.transfer(terminal[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(terminal[0]);
                         }   
-                    }
-
-                    if(creep.transfer(targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(targets[targets.length - 1]);
-                    }
-                    if(creep.transfer(terminal_targets[targets.length - 1], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(terminal_targets[targets.length - 1]);
-                    }
+                    } else if (targets.length) {
+                        if(creep.transfer(targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(targets[targets.length - 1]);
+                        }
+                    } else {
+                        if(creep.transfer(targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(targets[targets.length - 1]);
+                        }
+                        if(creep.transfer(terminal_targets[targets.length - 1], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(terminal_targets[targets.length - 1]);
+                        }
+                    } 
                 }
         
             /** changes creep to haul mode **/

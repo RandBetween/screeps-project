@@ -15,7 +15,7 @@ module.exports = function (creep, room) {
                 }
             });
         } else if (room == "W76N83") {
-            sources.push(Game.getObjectById("5a2703bbfa26195b9283246d"));
+            //sources.push(Game.getObjectById("5a2703bbfa26195b9283246d"));
             var target = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_SPAWN);
@@ -46,7 +46,7 @@ module.exports = function (creep, room) {
                     }
     
                 }
-    
+                
                 if (largestContainer.store[RESOURCE_ENERGY] >= 100) {
                   if(creep.withdraw(largestContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                       creep.moveTo(largestContainer);
