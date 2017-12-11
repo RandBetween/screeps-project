@@ -13,13 +13,13 @@ module.exports = function (creep, room) {
                 source = Game.getObjectById("5a1e0745f8b2a13832ecff45");
                 target = Game.getObjectById("5873bc4611e3e4361b4d753d");
             } else if (room == "W76N83") {
-                source = Game.getObjectById("5a239349b45ebf5e61484b8f");
+                source = Game.getObjectById("5a2c65ce38f7774da666b123");
                 target = Game.getObjectById("5873bc4411e3e4361b4d74e0");
             }  
         
             if (creep.memory.harvestPhase == true && creep.carry.energy < creep.carryCapacity) {
     
-                if (source.energy >= 0) {
+                if (source.energy >= 0 || room == "W76N83") {
                     if(creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(source);
                     };

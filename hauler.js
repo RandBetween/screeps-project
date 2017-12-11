@@ -15,12 +15,9 @@ module.exports = function (creep, room) {
                 }
             });
         } else if (room == "W76N83") {
-            //sources.push(Game.getObjectById("5a2703bbfa26195b9283246d"));
-            var target = creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_SPAWN);
-                }
-            });
+            sources.push(Game.getObjectById("5a2d5317ff83d80fabc9ee17"));
+            var target = [];
+            target.push(Game.getObjectById("5a2c65ce38f7774da666b123"));
         }
        
         /** Withdraw phase for hauler creep **/
@@ -31,7 +28,7 @@ module.exports = function (creep, room) {
             });
             
     
-            if (dropenergy && sources[0].store[RESOURCE_ENERGY] < 1500) {
+            if (dropenergy && sources[0].store > 1500) {
                 if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(dropenergy);
                     }
@@ -46,7 +43,7 @@ module.exports = function (creep, room) {
                     }
     
                 }
-                
+    
                 if (largestContainer.store[RESOURCE_ENERGY] >= 100) {
                   if(creep.withdraw(largestContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                       creep.moveTo(largestContainer);
@@ -69,4 +66,5 @@ module.exports = function (creep, room) {
         } else if(creep.memory.deliverPhase == true && creep.carry.energy == 0) {
             creep.memory.deliverPhase = false;
         }
+        
     }

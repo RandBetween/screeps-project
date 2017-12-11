@@ -10,7 +10,7 @@ module.exports = function (creep, room) {
     if (room == "W75N83") {
         sources.push(Game.getObjectById("5a19c44d9bc92518b838df2f"));
     } else if (room == "W76N83") {
-        sources.push(Game.getObjectById("5a239349b45ebf5e61484b8f"));
+        sources.push(Game.getObjectById("5a2c65ce38f7774da666b123"));
     }
         
     if (creep.memory.harvestPhase == true && creep.carry.energy < creep.carryCapacity) {

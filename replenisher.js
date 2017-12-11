@@ -15,7 +15,7 @@ module.exports = function (creep, workerNum, spawn_name) {
             if (room_name == "W75N83") {
                 source = Game.getObjectById("5a19c44d9bc92518b838df2f");
             } else if (room_name == "W76N83") {
-                source = Game.getObjectById("5a239349b45ebf5e61484b8f");
+                source = Game.getObjectById("5a2c65ce38f7774da666b123");
             }   
                
             var targets = [];
@@ -119,8 +119,8 @@ module.exports = function (creep, workerNum, spawn_name) {
                             creep.moveTo(targets[0]);
                         }
                     } else {
-                        if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(targets[0]);
+                        if(creep.transfer(terminal_targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(terminal_targets[0]);
                         }
                         if(creep.transfer(terminal_targets[0], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(terminal_targets[0]);
@@ -138,8 +138,8 @@ module.exports = function (creep, workerNum, spawn_name) {
                             creep.moveTo(targets[targets.length - 1]);
                         }
                     } else {
-                        if(creep.transfer(targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(targets[targets.length - 1]);
+                        if(creep.transfer(terminal_targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(terminal_targets[targets.length - 1]);
                         }
                         if(creep.transfer(terminal_targets[targets.length - 1], RESOURCE_HYDROGEN) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(terminal_targets[targets.length - 1]);

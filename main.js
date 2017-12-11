@@ -103,6 +103,31 @@ module.exports.loop = function () {
         }
     }
     
+    var towerArray2 = Game.spawns.Spawn2.room.find(FIND_MY_STRUCTURES, {
+      filter: {structureType: STRUCTURE_TOWER}
+    });
+
+    for (var i = 0; i < towerArray2.length; i++) {
+
+        if (towerArray2[i]) {
+
+            var closestHostile = towerArray2[i].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+
+            var closestDamagedStructure = towerArray2[i].pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => ((structure.structureType == STRUCTURE_RAMPART && structure.hits < 50000) ||
+                                        (structure.structureType == STRUCTURE_WALL && structure.hits < 20000) ||
+                                        (structure.structureType == STRUCTURE_CONTAINER && structure.hits < 150000) ||
+                                        (structure.structureType == STRUCTURE_ROAD && structure.hits < 2500))
+            });
+
+            if(closestHostile) {
+                towerArray2[i].attack(closestHostile);
+            } else if(closestDamagedStructure) {
+                towerArray2[i].repair(closestDamagedStructure);
+            }
+        }
+    }
+    
     // LINK FUNCTION
     var roomLinks = []
     roomLinks.push(Game.getObjectById("5a1dfd9971050f57ee51a8c3"));
@@ -160,28 +185,32 @@ module.exports.loop = function () {
         var spawn = room.find(FIND_MY_STRUCTURES, {
             filter: {structureType: STRUCTURE_SPAWN}
         });
-              
-        if ((calc_num_of_creeps("replenisher", room.name) < 2 && !(room.name == "W76N83")) || (calc_num_of_creeps("replenisher", room.name) < 1 && room.name == "W76N83")) {
-            Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
-        } else if (calc_num_of_creeps("harvester", room.name) < 1) {
-            Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("harvester2", room.name) < 1) {
-            Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("hauler", room.name) < 1 || (calc_num_of_creeps("hauler", room.name) < 2 && room.name == "W76N83")) {
+        
+        if ((calc_num_of_creeps("replenisher", room.name) < 2 && !(room.name == "W76N83")) || (calc_num_of_creeps("replenisher", room.name) < 2 && room.name == "W76N83")) {
+            if (room.name == "W75N83") {
+                Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
+            } else {
+                Game.spawns[spawn[0].name].createCreep([CARRY, MOVE], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
+            }
+        } else if (((calc_num_of_creeps("harvester", room.name) < 1) && !(room.name == "W76N83")) || ((calc_num_of_creeps("harvester", room.name) < 1) && (room.name == "W76N83"))) {
+            Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});    
+        } else if((calc_num_of_creeps("harvester2", room.name) < 1) || (calc_num_of_creeps("harvester2", room.name) > 999 && room.name == "W76N83")) {
+            Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});    
+        } else if(calc_num_of_creeps("hauler", room.name) < 1) {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler', deliverPhase: false, spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("hauler2", room.name) < 1 || (calc_num_of_creeps("hauler", room.name) < 2 && room.name == "W76N83")) {
+        } else if(calc_num_of_creeps("hauler2", room.name) < 1) {
             Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler2', deliverPhase: false, spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("builder", room.name) < 1 && Memory.buildingCount[room.name] > 0) {
-            Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'builder', harvestPhase: true, spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("upgrader", room.name) < 1) {
+        } else if (((calc_num_of_creeps("builder", room.name) < 1) && (Memory.buildingCount[room.name] > 0)) || ((calc_num_of_creeps("builder", room.name) < 2) && room.name == "W76N83")) {
+            Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'builder', harvestPhase: true, spawnRoom: spawn[0].name});    
+        } else if(((calc_num_of_creeps("upgrader", room.name) < 2) && !(room.name == "W76N83")) || (calc_num_of_creeps("upgrader", room.name) < 1)) {
             Game.spawns[spawn[0].name].createCreep(upgraderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'upgrader', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(calc_num_of_creeps("forager", room.name) > 999) {
             Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'forager', harvestPhase: true, spawnRoom: spawn[0].name});
         } else if(calc_num_of_creeps("claimer", room.name) > 999) {
             Game.spawns[spawn[0].name].createCreep(claimerAttributes, undefined, {role: 'claimer', spawnRoom: spawn[0].name});
-        } /*else if(calc_num_of_creeps("invader", room.name) > 1) {
-            Game.spawns[spawn[0].name].createCreep([ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'invader', spawnRoom: spawn[0].name}); */
-        else if(calc_num_of_creeps("miner", room.name) > 999) {
+        } else if(calc_num_of_creeps("invader", room.name) > 999) {
+            Game.spawns[spawn[0].name].createCreep([TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE], undefined, {role: 'invader', spawnRoom: spawn[0].name});
+        } else if(calc_num_of_creeps("miner", room.name) > 999) {
             Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE], undefined, {role: 'miner', harvestPhase: true, spawnRoom: spawn[0].name});
         }
     }

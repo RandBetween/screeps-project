@@ -9,7 +9,7 @@ module.exports = function (creep, room) {
         
     } else if (room == "Spawn2") {
         x = 19;
-        y = 15;
+        y = 14;
         
     };
     
@@ -23,18 +23,10 @@ module.exports = function (creep, room) {
 
     } else if (room == "Spawn2") {
         var sources = creep.room.find(FIND_SOURCES);
-        var target = Game.getObjectById("5a239349b45ebf5e61484b8f");
         
-        if (creep.carry.energy < creep.carryCapacity) {
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
-            }
-        } else {
-            if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(target);
-            }                
+        if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(x, y);
         }
-
     }
     
 };
