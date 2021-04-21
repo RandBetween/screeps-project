@@ -1,14 +1,14 @@
 module.exports = function (creep, room) {
     
     if (room == "Spawn1") {
-        room = "W75N83";
+        room = "W8N27";
     } else {
         room = "W76N83";
     }    
 
     var sources = [];
-    if (room == "W75N83") {
-        sources.push(Game.getObjectById("5a19c44d9bc92518b838df2f"));
+    if (room == "W8N27") {
+        sources.push(Game.getObjectById("607ed0b65b0acb4d3b7d42ca"));
     } else if (room == "W76N83") {
         sources.push(Game.getObjectById("5a2c65ce38f7774da666b123"));
     }
