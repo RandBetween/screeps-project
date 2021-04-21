@@ -2,11 +2,12 @@ var harvester = require('harvester');
 var harvester2 = require('harvester2');
 var upgrader = require('upgrader');
 var builder = require('builder');
-var hauler = require('hauler1');
+var hauler1 = require('hauler1');
 var hauler2 = require('hauler2');
 var invader = require('invader');
 var forager = require('forager');
-var miner = require('miner1');
+var miner1 = require('miner1');
+var miner2 = require('miner2');
 var claimer = require('claimer');
 var replenisher = require('replenisher');
 
@@ -209,6 +210,8 @@ module.exports.loop = function () {
                 Game.spawns[spawn[0].name].createCreep(minerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "miner1", harvestPhase: true, spawnRoom: spawn[0].name});
             } else if (calc_num_of_creeps("hauler1", room.name) < 1) {
                 Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "hauler1", deliverPhase: false, spawnRoom: spawn[0].name});
+            } else if (calc_num_of_creeps("miner2", room.name) < 1) {
+                Game.spawns[spawn[0].name].createCreep(minerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "miner2", harvestPhase: true, spawnRoom: spawn[0].name});
             }
         } else if (Memory.attributeLevel[room.name] == 6) {
             if ((calc_num_of_creeps("replenisher", room.name) < 2 && !(room.name == "W76N83")) || (calc_num_of_creeps("replenisher", room.name) < 2 && room.name == "W76N83")) {
