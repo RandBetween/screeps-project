@@ -28,11 +28,18 @@ module.exports = function (creep, room) {
             });
             
     
+            if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(dropenergy);
+            }
+
+            /*
             if (dropenergy && sources[0].store > 1500) {
                 if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(dropenergy);
                     }
-            } else {
+            } 
+
+            else {
     
                 var largestContainer = sources[0];
     
@@ -50,6 +57,7 @@ module.exports = function (creep, room) {
                   }
                 }
             }
+            */
     
         /** Changes creep to deliver phase **/
         } else if(creep.memory.deliverPhase == false && creep.carry.energy == creep.carryCapacity) {

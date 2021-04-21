@@ -27,13 +27,17 @@ module.exports = function (creep, room) {
                 filter: (d) => {return (d.resourceType == RESOURCE_ENERGY)}
             });
             
-    
+            if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(dropenergy);
+            }
+
+            /*
             if (dropenergy && sources[0].store > 1500) {
                 if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(dropenergy);
                     }
             } 
-            /*
+
             else {
     
                 var largestContainer = sources[0];
