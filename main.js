@@ -11,7 +11,7 @@ var claimer = require('claimer');
 var replenisher = require('replenisher');
 
 function calc_num_of_creeps(role, room) {
-    if (room == "W75N83") {
+    if (room == "W8N27") {
         room = "Spawn1";
     } else {
         room = "Spawn2";
@@ -61,21 +61,21 @@ module.exports.loop = function () {
 
         // Add Attribute Level to memory
         var attributeLevel = 0;
-        if (spawnEnergy < 550) {attributeLevel = 1} else if
-        (spawnEnergy < 800) {attributeLevel = 2} else if
-        (spawnEnergy < 1300) {attributeLevel = 3} else if
-        (spawnEnergy < 1800) {attributeLevel = 4} else if
-        (spawnEnergy < 2300) {attributeLevel = 5} else if
-        (spawnEnergy < 3100) {attributeLevel = 6} else if
-        (spawnEnergy < 3900) {attributeLevel = 7} else if
-        (spawnEnergy >= 3900) {attributeLevel = 8};
+        if (spawnEnergy <= 300) {attributeLevel = 0} else if
+        (spawnEnergy <= 550) {attributeLevel = 1} else if
+        (spawnEnergy <= 800) {attributeLevel = 2} else if
+        (spawnEnergy <= 1300) {attributeLevel = 3} else if
+        (spawnEnergy <= 1800) {attributeLevel = 4} else if
+        (spawnEnergy <= 2300) {attributeLevel = 5} else if
+        (spawnEnergy <= 3100) {attributeLevel = 6} else if
+        (spawnEnergy <= 3900) {attributeLevel = 7} else if
+        (spawnEnergy > 3900) {attributeLevel = 8};
         Memory.attributeLevel[room.name] = attributeLevel;
 
         // Add Building Count to memory
         var buildingCount = room.find(FIND_MY_CONSTRUCTION_SITES).length;
         Memory.buildingCount[room.name] = buildingCount;
     }
-    //Memory.attributeLevel["W76N83"] = 1;
     
     /** TOWER FUNCTIONS **/
     var towerArray = Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES, {
@@ -103,9 +103,11 @@ module.exports.loop = function () {
         }
     }
     
+    /*
     var towerArray2 = Game.spawns.Spawn2.room.find(FIND_MY_STRUCTURES, {
       filter: {structureType: STRUCTURE_TOWER}
     });
+    */
 
     for (var i = 0; i < towerArray2.length; i++) {
 
