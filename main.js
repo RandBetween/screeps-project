@@ -206,7 +206,7 @@ module.exports.loop = function () {
         if (Memory.attributeLevel[room.name] == 0) {
             // Priority is to ensure that miners exist
             if (calc_num_of_creeps("miner1", room.name) < 1) {
-                Game.spawns[spawn[0].name].createCreep(minerAttributes[Memory.attributeLevel[room.nmae]], undefined, {role: "miner1", harvestPhase = true, spawnRoom: spawn[0].name});
+                Game.spawns[spawn[0].name].createCreep(minerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "miner1", harvestPhase = true, spawnRoom: spawn[0].name});
             } else if (calc_num_of_creeps("hauler1", room.name) < 1) {
                 Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "hauler1", deliverPhase: false, spawnRoom: spawn[0].name});
             }
