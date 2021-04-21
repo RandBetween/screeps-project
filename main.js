@@ -2,11 +2,11 @@ var harvester = require('harvester');
 var harvester2 = require('harvester2');
 var upgrader = require('upgrader');
 var builder = require('builder');
-var hauler = require('hauler');
+var hauler = require('hauler1');
 var hauler2 = require('hauler2');
 var invader = require('invader');
 var forager = require('forager');
-var miner = require('miner');
+var miner = require('miner1');
 var claimer = require('claimer');
 var replenisher = require('replenisher');
 
