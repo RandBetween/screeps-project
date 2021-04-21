@@ -217,7 +217,7 @@ module.exports.loop = function () {
             } else if (calc_num_of_creeps("upgrader", room.name) < 1) {
                 Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: "upgrader", harvestPhase: true, spawnRoom: spawn[0].name});
             } else if (calc_num_of_creeps("builder", room.name) > 999) {
-                Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: "builder", deliverPhase: false, spawnRoom: spawn[0].name});
+                Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: "builder", harvestPhase: true, spawnRoom: spawn[0].name});
             }
         } else if (Memory.attributeLevel[room.name] == 6) {
             if ((calc_num_of_creeps("replenisher", room.name) < 2 && !(room.name == "W76N83")) || (calc_num_of_creeps("replenisher", room.name) < 2 && room.name == "W76N83")) {
