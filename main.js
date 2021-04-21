@@ -132,6 +132,7 @@ module.exports.loop = function () {
     
     // LINK FUNCTION
     var roomLinks = []
+    /*
     roomLinks.push(Game.getObjectById("5a1dfd9971050f57ee51a8c3"));
     roomLinks.push(Game.getObjectById("5a231ffa546aad7ee351824a"));
     var targetLink = Game.getObjectById("5a1e0745f8b2a13832ecff45");
@@ -142,39 +143,53 @@ module.exports.loop = function () {
             roomLinks[1].transferEnergy(targetLink);
         }
     };
+    */
 
-    var harvesterAttributes = {1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
-      2 : [WORK, WORK, WORK, WORK, WORK, MOVE],
-      3 : [WORK, WORK, WORK, WORK, WORK, MOVE],
-      4: [WORK, WORK, WORK, WORK, WORK, MOVE],
-      5: [WORK, WORK, WORK, WORK, WORK, MOVE],
-      6: [WORK, WORK, WORK, WORK, WORK, MOVE],
-      7: [WORK, WORK, WORK, WORK, WORK, MOVE],
-      8: [WORK, WORK, WORK, WORK, WORK, MOVE]
+    var harvesterAttributes = {0 : [WORK, CARRY, CARRY, MOVE, MOVE],
+    1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+    2 : [WORK, WORK, WORK, WORK, WORK, MOVE],
+    3 : [WORK, WORK, WORK, WORK, WORK, MOVE],
+    4: [WORK, WORK, WORK, WORK, WORK, MOVE],
+    5: [WORK, WORK, WORK, WORK, WORK, MOVE],
+    6: [WORK, WORK, WORK, WORK, WORK, MOVE],
+    7: [WORK, WORK, WORK, WORK, WORK, MOVE],
+    8: [WORK, WORK, WORK, WORK, WORK, MOVE]
     };
 
-    var haulerAttributes = {1 : [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE],
-      2 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
-      3 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
-      4 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
-      5 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
-      6 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE]
+    var haulerAttributes = {0 : [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE],
+    1 : [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE],
+    2 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
+    3 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
+    4 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
+    5 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
+    6 : [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE]
     };
 
-    var builderAttributes = {1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
-      2 : [WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
-      3 : [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
-      4 : [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
-      5 : [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
-      6 : [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]
+    var builderAttributes = {0 : [WORK, CARRY, CARRY, MOVE, MOVE],
+    1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+    2 : [WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+    3 : [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
+    4 : [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
+    5 : [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
+    6 : [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]
     };
 
-    var upgraderAttributes = {1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
-      2 : [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE],
-      3 : [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE],
-      4 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
-      5 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
-      6 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]
+    var upgraderAttributes = {0 : [WORK, CARRY, CARRY, MOVE, MOVE],
+    1 : [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+    2 : [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE],
+    3 : [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE],
+    4 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+    5 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
+    6 : [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]
+    };
+
+    var minerAttributes = {0 : [WORK, WORK, MOVE, MOVE],
+    1 : [WORK, WORK, WORK, WORK, WORK, MOVE, MOVE],
+    2 : [WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE],
+    3 : [WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE],
+    4 : [WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE],
+    5 : [WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE],
+    6 : [WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE]
     };
 
     var claimerAttributes = [CLAIM, MOVE]
@@ -187,39 +202,47 @@ module.exports.loop = function () {
         var spawn = room.find(FIND_MY_STRUCTURES, {
             filter: {structureType: STRUCTURE_SPAWN}
         });
-        
-        if ((calc_num_of_creeps("replenisher", room.name) < 2 && !(room.name == "W76N83")) || (calc_num_of_creeps("replenisher", room.name) < 2 && room.name == "W76N83")) {
-            if (room.name == "W75N83") {
-                Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
-            } else {
-                Game.spawns[spawn[0].name].createCreep([CARRY, MOVE], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
+
+        if (Memory.attributeLevel[room.name] == 0) {
+            // Priority is to ensure that miners exist
+            if (calc_num_of_creeps("miner1", room.name) < 1) {
+                Game.spawns[spawn[0].name].createCreep(minerAttributes[Memory.attributeLevel[room.nmae]], undefined, {role: "miner1", harvestPhase = true, spawnRoom: spawn[0].name});
+            } else if (calc_num_of_creeps("hauler1", room.name) < 1) {
+                Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "hauler1", deliverPhase: false, spawnRoom: spawn[0].name});
             }
-        } else if (((calc_num_of_creeps("harvester", room.name) < 1) && !(room.name == "W76N83")) || ((calc_num_of_creeps("harvester", room.name) < 1) && (room.name == "W76N83"))) {
-            Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});    
-        } else if((calc_num_of_creeps("harvester2", room.name) < 1) || (calc_num_of_creeps("harvester2", room.name) > 999 && room.name == "W76N83")) {
-            Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});    
-        } else if(calc_num_of_creeps("hauler", room.name) < 1) {
-            Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler', deliverPhase: false, spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("hauler2", room.name) < 1) {
-            Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler2', deliverPhase: false, spawnRoom: spawn[0].name});
-        } else if (((calc_num_of_creeps("builder", room.name) < 1) && (Memory.buildingCount[room.name] > 0)) || ((calc_num_of_creeps("builder", room.name) < 2) && room.name == "W76N83")) {
-            Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'builder', harvestPhase: true, spawnRoom: spawn[0].name});    
-        } else if(((calc_num_of_creeps("upgrader", room.name) < 2) && !(room.name == "W76N83")) || (calc_num_of_creeps("upgrader", room.name) < 1)) {
-            Game.spawns[spawn[0].name].createCreep(upgraderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'upgrader', harvestPhase: true, spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("forager", room.name) > 999) {
-            Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'forager', harvestPhase: true, spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("claimer", room.name) > 999) {
-            Game.spawns[spawn[0].name].createCreep(claimerAttributes, undefined, {role: 'claimer', spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("invader", room.name) > 999) {
-            Game.spawns[spawn[0].name].createCreep([TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE], undefined, {role: 'invader', spawnRoom: spawn[0].name});
-        } else if(calc_num_of_creeps("miner", room.name) > 999) {
-            Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE], undefined, {role: 'miner', harvestPhase: true, spawnRoom: spawn[0].name});
+        } else if (Memory.attributeLevel[room.name] == 6) {
+            if ((calc_num_of_creeps("replenisher", room.name) < 2 && !(room.name == "W76N83")) || (calc_num_of_creeps("replenisher", room.name) < 2 && room.name == "W76N83")) {
+                if (room.name == "W75N83") {
+                    Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
+                } else {
+                    Game.spawns[spawn[0].name].createCreep([CARRY, MOVE], undefined, {role: 'replenisher', deliverPhase: false, spawnRoom: spawn[0].name});
+                }
+            } else if (((calc_num_of_creeps("harvester", room.name) < 1) && !(room.name == "W76N83")) || ((calc_num_of_creeps("harvester", room.name) < 1) && (room.name == "W76N83"))) {
+                Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester', harvestPhase: true, spawnRoom: spawn[0].name});    
+            } else if((calc_num_of_creeps("harvester2", room.name) < 1) || (calc_num_of_creeps("harvester2", room.name) > 999 && room.name == "W76N83")) {
+                Game.spawns[spawn[0].name].createCreep(harvesterAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'harvester2', harvestPhase: true, spawnRoom: spawn[0].name});    
+            } else if(calc_num_of_creeps("hauler", room.name) < 1) {
+                Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler', deliverPhase: false, spawnRoom: spawn[0].name});
+            } else if(calc_num_of_creeps("hauler2", room.name) < 1) {
+                Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'hauler2', deliverPhase: false, spawnRoom: spawn[0].name});
+            } else if (((calc_num_of_creeps("builder", room.name) < 1) && (Memory.buildingCount[room.name] > 0)) || ((calc_num_of_creeps("builder", room.name) < 2) && room.name == "W76N83")) {
+                Game.spawns[spawn[0].name].createCreep(builderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'builder', harvestPhase: true, spawnRoom: spawn[0].name});    
+            } else if(((calc_num_of_creeps("upgrader", room.name) < 2) && !(room.name == "W76N83")) || (calc_num_of_creeps("upgrader", room.name) < 1)) {
+                Game.spawns[spawn[0].name].createCreep(upgraderAttributes[Memory.attributeLevel[room.name]], undefined, {role: 'upgrader', harvestPhase: true, spawnRoom: spawn[0].name});
+            } else if(calc_num_of_creeps("forager", room.name) > 999) {
+                Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, {role: 'forager', harvestPhase: true, spawnRoom: spawn[0].name});
+            } else if(calc_num_of_creeps("claimer", room.name) > 999) {
+                Game.spawns[spawn[0].name].createCreep(claimerAttributes, undefined, {role: 'claimer', spawnRoom: spawn[0].name});
+            } else if(calc_num_of_creeps("invader", room.name) > 999) {
+                Game.spawns[spawn[0].name].createCreep([TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE], undefined, {role: 'invader', spawnRoom: spawn[0].name});
+            } else if(calc_num_of_creeps("miner", room.name) > 999) {
+                Game.spawns[spawn[0].name].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE], undefined, {role: 'miner', harvestPhase: true, spawnRoom: spawn[0].name});
+            }
         }
     }
 
     var replenisherIndex = {
-        "W75N83": 1,
-        "W76N83": 1
+        "W8N27": 1,
     };
 
     for(var name in Game.creeps) {
@@ -232,14 +255,14 @@ module.exports.loop = function () {
             upgrader(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'builder') {
             builder(creep, creep.memory.spawnRoom);
-        } else if(creep.memory.role == 'hauler') {
-            hauler(creep, creep.memory.spawnRoom);
+        } else if(creep.memory.role == 'hauler1') {
+            hauler1(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'hauler2') {
             hauler2(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'invader') {
             invader(creep, creep.memory.spawnRoom);
-        } else if(creep.memory.role == 'miner') {
-            miner(creep, creep.memory.spawnRoom);
+        } else if(creep.memory.role == 'miner1') {
+            miner1(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'forager') {
             forager(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'claimer') {
