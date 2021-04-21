@@ -62,7 +62,7 @@ module.exports.loop = function () {
 
         // Add Attribute Level to memory
         var attributeLevel = 0;
-        if (spawnEnergy <= 300) {attributeLevel = 0} else if
+        if (spawnEnergy <= 350) {attributeLevel = 0} else if
         (spawnEnergy <= 550) {attributeLevel = 1} else if
         (spawnEnergy <= 800) {attributeLevel = 2} else if
         (spawnEnergy <= 1300) {attributeLevel = 3} else if
