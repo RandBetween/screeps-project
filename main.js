@@ -268,6 +268,8 @@ module.exports.loop = function () {
             invader(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'miner1') {
             miner1(creep, creep.memory.spawnRoom);
+        } else if(creep.memory.role == 'miner2') {
+            miner2(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'forager') {
             forager(creep, creep.memory.spawnRoom);
         } else if(creep.memory.role == 'claimer') {
