@@ -8,14 +8,44 @@ module.exports = function (creep, room) {
 
         var sources = [];
         if (room == "W8N27") {
-            // sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
+
+            var targets = [];
+
+            /*
             var target = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_STORAGE);
                 }
             });
-            target = []
-            target.push(Game.getObjectById("607ed0b65b0acb4d3b7d42ca"));
+            */
+
+            // Add spawn to target array
+            var spawns = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_SPAWN &&
+                    structure.energy < structure.energyCapacity);
+                }
+            });
+    
+            if (spawns.length > 0) {
+                targets.push(spawns[0]);
+            }
+    
+            // Add extensions to target array
+            
+            var extensions = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_EXTENSION &&
+                    structure.energy < structure.energyCapacity);
+                }
+            });
+    
+            if (extensions.length > 0) {
+                for (i = 0; i < extensions.length; i++) {
+                    targets.push(extensions[i])
+                }
+            };
+
         } else if (room == "W76N83") {
             sources.push(Game.getObjectById("5a2d5317ff83d80fabc9ee17"));
             var target = [];
@@ -67,8 +97,8 @@ module.exports = function (creep, room) {
         /** Moves hauler to various delivery spots **/
         } else if(creep.memory.deliverPhase == true && creep.carry.energy > 0) {
     
-            if(creep.transfer(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(target[0]);
+            if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(targets[0]);
             }
     
         /** changes creep to haul mode **/
