@@ -212,6 +212,8 @@ module.exports.loop = function () {
                 Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "hauler1", deliverPhase: false, spawnRoom: spawn[0].name});
             } else if (calc_num_of_creeps("miner2", room.name) < 1) {
                 Game.spawns[spawn[0].name].createCreep(minerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "miner2", harvestPhase: true, spawnRoom: spawn[0].name});
+            } else if (calc_num_of_creeps("hauler1", room.name) < 2) {
+                Game.spawns[spawn[0].name].createCreep(haulerAttributes[Memory.attributeLevel[room.name]], undefined, {role: "hauler1", deliverPhase: false, spawnRoom: spawn[0].name});
             }
         } else if (Memory.attributeLevel[room.name] == 6) {
             if ((calc_num_of_creeps("replenisher", room.name) < 2 && !(room.name == "W76N83")) || (calc_num_of_creeps("replenisher", room.name) < 2 && room.name == "W76N83")) {
