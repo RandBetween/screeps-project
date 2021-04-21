@@ -1,14 +1,14 @@
 module.exports = function (creep, room) {
     
         if (room == "Spawn1") {
-            room = "W75N83";
+            room = "W8N27";
         } else {
             room = "W76N83";
         }
 
         var sources = [];
-        if (room == "W75N83") {
-            sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
+        if (room == "W8N27") {
+            // sources.push(Game.getObjectById("5a17173802a1f81484c1a604"));
             var target = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_STORAGE);
@@ -32,7 +32,9 @@ module.exports = function (creep, room) {
                 if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(dropenergy);
                     }
-            } else {
+            } 
+            /*
+            else {
     
                 var largestContainer = sources[0];
     
@@ -50,6 +52,7 @@ module.exports = function (creep, room) {
                   }
                 }
             }
+            */
     
         /** Changes creep to deliver phase **/
         } else if(creep.memory.deliverPhase == false && creep.carry.energy == creep.carryCapacity) {
