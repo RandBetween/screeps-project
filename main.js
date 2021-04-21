@@ -107,7 +107,6 @@ module.exports.loop = function () {
     var towerArray2 = Game.spawns.Spawn2.room.find(FIND_MY_STRUCTURES, {
       filter: {structureType: STRUCTURE_TOWER}
     });
-    */
 
     for (var i = 0; i < towerArray2.length; i++) {
 
@@ -129,6 +128,7 @@ module.exports.loop = function () {
             }
         }
     }
+    */
     
     // LINK FUNCTION
     var roomLinks = []
