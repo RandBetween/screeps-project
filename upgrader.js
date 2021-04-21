@@ -9,7 +9,7 @@ module.exports = function (creep, room) {
             var source;
             var target;
     
-            if (room == "W75N83") {
+            if (room == "W8N27") {
                 source = Game.getObjectById("607ed0b65b0acb4d3b7d42ca");
                 target = Game.getObjectById("5982fdbab097071b4adbfc32");
             } else if (room == "W76N83") {
