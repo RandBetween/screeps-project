@@ -1,7 +1,7 @@
 module.exports = function (creep, room) {
     
             if (room == "Spawn1") {
-                room = "W75N83";
+                room = "W8N27";
             } else {
                 room = "W76N83";
             }
@@ -10,8 +10,8 @@ module.exports = function (creep, room) {
             var target;
     
             if (room == "W75N83") {
-                source = Game.getObjectById("5a1e0745f8b2a13832ecff45");
-                target = Game.getObjectById("5873bc4611e3e4361b4d753d");
+                source = Game.getObjectById("607ed0b65b0acb4d3b7d42ca");
+                target = Game.getObjectById("5982fdbab097071b4adbfc32");
             } else if (room == "W76N83") {
                 source = Game.getObjectById("5a2c65ce38f7774da666b123");
                 target = Game.getObjectById("5873bc4411e3e4361b4d74e0");
