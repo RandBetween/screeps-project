@@ -14,7 +14,8 @@ module.exports = function (creep, room) {
                     return (structure.structureType == STRUCTURE_STORAGE);
                 }
             });
-            target = Game.getObjectById("607ed0b65b0acb4d3b7d42ca");
+            target = []
+            target.push(Game.getObjectById("607ed0b65b0acb4d3b7d42ca"));
         } else if (room == "W76N83") {
             sources.push(Game.getObjectById("5a2d5317ff83d80fabc9ee17"));
             var target = [];
